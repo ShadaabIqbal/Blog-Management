@@ -20,9 +20,9 @@ const authors = async function (req, res) {
 
         if (!fname || !lname || !password || !title) return res.status(400).send({ Status: false, message: "Mandatory field is not given" })
 
-        if(!fname.match(matchNames) ||  !lname.match(matchNames)) return res.status(400).send({status : false , message : "Invalid formate for First Name or Last Name"})
+        if (!fname.match(matchNames) || !lname.match(matchNames)) return res.status(400).send({ status: false, message: "Invalid formate for First Name or Last Name" })
 
-        if( title !== "Mr" && title !== "Miss" && title !== "Mrs") return res.status(400).send({status : false , message : "Given tittle is invalid (Only Mr , Mrs , Miss is valid)"})
+        if (title !== "Mr" && title !== "Miss" && title !== "Mrs") return res.status(400).send({ status: false, message: "Given tittle is invalid (Only Mr , Mrs , Miss is valid)" })
 
 
         // // Email extracting from body to verify given email is correct or not.
@@ -36,9 +36,9 @@ const authors = async function (req, res) {
         //  let emailFormat = /^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+).([a-z]{2,20})$/
         // if (!email.match(emailFormat)) return res.status(400).send("Email id is invalid.")
 
-        let emailUnique = await authorModel.findOne({email : email})
+        let emailUnique = await authorModel.findOne({ email: email })
 
-        if(emailUnique) return res.status(400).send({status : false , message : "Email is already exist , please provide other."})
+        if (emailUnique) return res.status(400).send({ status: false, message: "Email is already exist , please provide other." })
 
 
         // // If everyThing is right then create data in DB and send back newy formed data.
@@ -52,12 +52,6 @@ const authors = async function (req, res) {
     }
 
 }
-
-
-
-
-
-
 
 
 const loginAuthor = async function (req, res) {
@@ -91,4 +85,4 @@ const loginAuthor = async function (req, res) {
 
 
 
-module.exports = { authors , loginAuthor }
+module.exports = { authors, loginAuthor }

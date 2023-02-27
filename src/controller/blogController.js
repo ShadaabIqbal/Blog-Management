@@ -178,7 +178,6 @@ const deleteBlog = async function (req, res) {
         res.status(500).send({ status: false, message: err.message })
     }
 
-
 }
 
 
@@ -189,7 +188,7 @@ const deletBlogByQuery = async function (req, res) {
     try {
 
         const query = req.query
-        const { category , tags, subcategory } = query
+        const { category , tags, subcategory, authorId } = query
 
 
         // // // Every time when user want to delete data by query then give author id for authorisation purpose and blog should be not deleted.
@@ -211,6 +210,9 @@ const deletBlogByQuery = async function (req, res) {
         }
         if (subcategory) {
             findObj["subcategory"] = subcategory
+        }
+        if (authorId) {
+            findObj["authorId"] = authorId
         }
 
 
@@ -236,14 +238,11 @@ const deletBlogByQuery = async function (req, res) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 module.exports = {  blogs, allBlogs, updateBlog, deleteBlog, deletBlogByQuery }
+
+
+
+
+
+
+
